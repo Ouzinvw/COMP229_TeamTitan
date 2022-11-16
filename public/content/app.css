@@ -1,0 +1,86 @@
+/*
+Logo colours:
+Cyan blue: #0B8793
+Dark purple: #360033
+*/
+
+.title {
+    margin: 25px 0 0;
+    text-align: center;
+}
+
+.highlight{
+    color: #958f74;
+    font-weight: bold;
+}
+
+.text-center{
+    padding: 0 5%;
+}
+
+.center{
+    display: block;
+    margin: 25px auto 40px;
+}
+
+.lead{
+    font-size: 1.7em;
+}
+
+.btn-link{
+    border: #000 solid 1px;
+    border-radius: 3px 3px 3px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    padding: 7px 15px;
+    margin: 20px auto;
+}
+
+.btn-link:hover{
+    background-color: #75663d;
+    border: #75663d solid 1px;
+    color: #fff;
+}
+
+.col{
+    margin: 28px 0;
+}
+
+#copyright{
+    color: #fff;
+}
+
+.thin-width{
+    margin: 20px 20%;
+}
+
+.form-control{
+    width: 20%;
+}
+
+#submitBtn{
+    background-color: #ffffff;
+    color: #0B8793;
+    font-weight: bold;
+    padding: 5px 18px;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px 2px 2px;
+    transition: .4s ease;
+}
+#submitBtn:hover{
+    color: #61892F;
+    border: 1px solid #61892F;
+}
+
+.btn-success{
+    background-color: #0B8793;
+    border: 2px solid;
+}
+.btn-success:hover{
+    background-color: #61892F;
+}
+
+.fa-user, .fa-lock{
+    padding: 10px;
+}
