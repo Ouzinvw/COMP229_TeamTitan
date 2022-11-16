@@ -2,13 +2,13 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const ContactSchema = new Schema({
+const SurveySchema = new Schema({
     name: String, 
     number: String, 
     email: String,
 }, {
     timestamps: true,
-    collection: 'contacts'
+    collection: 'surveys'
 });
 
-export default mongoose.model('Contacts', ContactSchema);
+export default mongoose.model('Surveys', SurveySchema);
