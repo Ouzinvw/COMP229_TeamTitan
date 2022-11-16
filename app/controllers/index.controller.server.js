@@ -6,6 +6,6 @@ export function displayHomePage(req, res, next) {
     res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req)});
 };
 
-export function displayContactPage(req, res, next) {
-    res.render('index', { title: 'Contact', page: 'contact', displayName: UserDisplayName(req)});
+export function DisplaySurveyList(req, res, next) {
+    res.render('index', { title: 'Survey', page: 'surveys', displayName: UserDisplayName(req)});
 }

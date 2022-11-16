@@ -6,30 +6,32 @@
             <form class="form" method="POST">
                 <input type="hidden" name="id" value="<%= survey._id %>" >
                 <div class="form-group">
-                    <label for="nameTextField">Full name</label>
+                    <label for="nameTextField">Survey name</label>
                     <input type="text" class="form-control"
                     id="nameTextField"
-                    placeholder="Enter the survey's full Name"
+                    placeholder="Enter a name for your survey"
                     name="name" 
                     value="<%= survey.name %>"
                     required>
                 </div>
 
+<!-- Bottom 2 items will need updating here, in list, and in survey controller -->
+
                 <div class="form-group">
-                    <label for="authorTextField">Phone number</label>
+                    <label for="authorTextField">Survey Description</label>
                     <input type="text" class="form-control"
                     id="phoneNumTextField"
-                    placeholder="Enter the survey's phone number"
+                    placeholder="Write a brief description of your survey"
                     name="number" 
                     value="<%= survey.number %>"
                     required>
                 </div>
 
                 <div class="form-group">
-                    <label for="publishedTextField">Email</label>
+                    <label for="publishedTextField">Your email</label>
                     <input type="text" class="form-control"
                     id="emailTextField"
-                    placeholder="Enter the survey's email"
+                    placeholder="Enter your email address"
                     name="email" 
                     value="<%= survey.email %>"
                     required>
