@@ -48,25 +48,21 @@ Dark purple: #360033
     color: #fff;
 }
 
+.btn{
+    padding: 2px 30px;
+    margin: 10px 0;
+}
+
+a{
+    color: #958f74;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #706c5c;
+}
 
 .form-control{
-    width: 20%;
-}
-
-#submitBtn{
-    background-color: #ffffff;
-    color: #0B8793;
-    font-weight: bold;
-    padding: 5px 18px;
-    border: 1px solid #c4c4c4;
-    border-radius: 2px 2px 2px;
-    transition: .4s ease;
-}
-#submitBtn:hover{
-    color: #61892F;
-    border: 1px solid #61892F;
-}
-
-.fa-user, .fa-lock{
     padding: 10px;
+    margin: 5px 0;
 }
