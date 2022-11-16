@@ -43,17 +43,11 @@ Dark purple: #360033
     color: #fff;
 }
 
-.col{
-    margin: 28px 0;
-}
 
 #copyright{
     color: #fff;
 }
 
-.thin-width{
-    margin: 20px 20%;
-}
 
 .form-control{
     width: 20%;
@@ -71,14 +65,6 @@ Dark purple: #360033
 #submitBtn:hover{
     color: #61892F;
     border: 1px solid #61892F;
-}
-
-.btn-success{
-    background-color: #0B8793;
-    border: 2px solid;
-}
-.btn-success:hover{
-    background-color: #61892F;
 }
 
 .fa-user, .fa-lock{
