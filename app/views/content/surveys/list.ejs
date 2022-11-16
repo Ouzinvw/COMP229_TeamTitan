@@ -1,8 +1,8 @@
 <div class="container">
     <h1 class="title">Survey List</h1>
     <% if(displayName) { %>
-    <a href="/contact-add" class="btn btn-success" role="button">
-        <i class="fas fa-plus-circle "></i> Add a Contact</a>
+    <a href="/survey-add" class="btn btn-success" role="button">
+        <i class="fas fa-plus-circle "></i> Add a Survey</a>
     <% } %>
 
     <div class="row">
@@ -20,24 +20,24 @@
                         <% } %>
                     </tr>
                 </thead>
-                <tbody id="contactList">
+                <tbody id="surveyList">
                     <!-- Repeatable Rows -->
-                    <% for(let count = 0; count < contacts.length; count++) { %>
+                    <% for(let count = 0; count < surveys.length; count++) { %>
                         <tr>
-                            <td><%= contacts[count].name %></td>
-                            <td><%= contacts[count].number %></td>
-                            <td><%= contacts[count].email %></td>
+                            <td><%= surveys[count].name %></td>
+                            <td><%= surveys[count].number %></td>
+                            <td><%= surveys[count].email %></td>
 
                             <% if(displayName) { %>
                             
                             <td class="text-center col-1">
-                                <a href="/contact-edit/<%= contacts[count]._id %>"
+                                <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-success btn-sm">
                                     <i class="fas fa-pencil-alt"></i> Update</a>
                             </td>
                             
                             <td class="text-center col-1">
-                                <a href="/contact-delete/<%= contacts[count]._id %>"
+                                <a href="/survey-delete/<%= surveys[count]._id %>"
                                     class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i> Delete</a>
                             </td>

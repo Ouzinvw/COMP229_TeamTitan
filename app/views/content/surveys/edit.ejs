@@ -4,14 +4,14 @@
             <h1 class="title"><%= title %></h1>
 
             <form class="form" method="POST">
-                <input type="hidden" name="id" value="<%= contact._id %>" >
+                <input type="hidden" name="id" value="<%= survey._id %>" >
                 <div class="form-group">
                     <label for="nameTextField">Full name</label>
                     <input type="text" class="form-control"
                     id="nameTextField"
-                    placeholder="Enter the contact's full Name"
+                    placeholder="Enter the survey's full Name"
                     name="name" 
-                    value="<%= contact.name %>"
+                    value="<%= survey.name %>"
                     required>
                 </div>
 
@@ -19,9 +19,9 @@
                     <label for="authorTextField">Phone number</label>
                     <input type="text" class="form-control"
                     id="phoneNumTextField"
-                    placeholder="Enter the contact's phone number"
+                    placeholder="Enter the survey's phone number"
                     name="number" 
-                    value="<%= contact.number %>"
+                    value="<%= survey.number %>"
                     required>
                 </div>
 
@@ -29,16 +29,16 @@
                     <label for="publishedTextField">Email</label>
                     <input type="text" class="form-control"
                     id="emailTextField"
-                    placeholder="Enter the contact's email"
+                    placeholder="Enter the survey's email"
                     name="email" 
-                    value="<%= contact.email %>"
+                    value="<%= survey.email %>"
                     required>
                 </div>
                 <br>
                 <button class="btn btn-success" type="submit">
                     <i class="fas fa-edit"></i> Submit</button>
                 
-                    <a href="/contact-list" class="btn btn-danger">
+                    <a href="/survey-list" class="btn btn-danger">
                         <i class="fas fa-undo"></i> Cancel</a>
 
             </form>
