@@ -1,35 +1,36 @@
 // Third Party Modules
 import express from "express";
 import cookieParser from "cookie-parser";
-import logger from 'morgan';
+import logger from "morgan";
 import session from "express-session";
 
-// ES Modules fix for __dirname 
-import path, {dirname} from 'path';
-import { fileURLToPath } from 'url';
+// ES Modules fix for __dirname
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Auth Step 1 - import modules
-import passport from 'passport';
-import passportLocal from 'passport-local';
-import flash from 'connect-flash';
+import passport from "passport";
+import passportLocal from "passport-local";
+import flash from "connect-flash";
 
 // Auth Step 2 - define our auth strategy
 let localStrategy = passportLocal.Strategy;
 
 // Auth Step 3 - import the user model
-import User from './models/user.js';
+import User from "./models/user.js";
 
 // Import Mongoose Module
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 // Configuration Module
 import { MongoURI, Secret } from "../config/config.js";
 
 // Import Router
-import indexRouter from './routes/index.route.server.js';
-import authRouter from './routes/auth.route.server.js';
-import surveyRouter from './routes/surveys.route.server.js';
+import indexRouter from "./routes/index.route.server.js";
+import authRouter from "./routes/auth.route.server.js";
+import surveyRouter from "./routes/surveys.route.server.js";
+import templatesRouter from "./routes/templates.route.server.js";
 
 // instantiate app-server
 const app = express();
@@ -39,25 +40,27 @@ mongoose.connect(MongoURI);
 const db = mongoose.connection;
 
 //Listen for connection success or error
-db.on('open', () => console.log("Connected to MongoDB"));
-db.on('error', () => console.log("Mongo Connection Error"));
+db.on("open", () => console.log("Connected to MongoDB"));
+db.on("error", () => console.log("Mongo Connection Error"));
 
 // setup ViewEngine EJS
-app.set('views', path.join(__dirname,'/views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "ejs");
 
-app.use(logger('dev')); 
+app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Auth Step 4 - Setup Express Session
-app.use(session({
+app.use(
+  session({
     secret: Secret,
-    saveUninitialized: false, 
-    resave: false
-}));
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 // Auth Step5 - Setup Flash
 app.use(flash());
@@ -74,8 +77,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Use Routes
-app.use('/', indexRouter);
-app.use('/', authRouter);
-app.use('/', surveyRouter);
+app.use("/", indexRouter);
+app.use("/", authRouter);
+app.use("/", surveyRouter);
+app.use("/", templatesRouter);
 
 export default app;
