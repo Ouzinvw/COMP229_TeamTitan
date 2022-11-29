@@ -1,9 +1,12 @@
 <div class="container">
-    <h1 class="title highlight">Public Surveys</h1>
+    <h1 class="title highlight">Survey One</h1>
     <% if(displayName) { %>
     <a href="/survey-add" class="btn btn-dark" role="button">
         <i class="fas fa-plus-circle "></i> Add a Survey</a>
     <% } %>
+
+    <a href="/survey-add" class="btn btn-dark" role="button">
+        <i class="fas fa-plus-circle "></i> Add a Question</a>
 
     <div class="row">
         <div class="col">
@@ -14,10 +17,16 @@
                         <th scope="col">Survey</th>
                         <th scope="col">Description</th>
                         <th scope="col">Creator</th>
+                        <!-- if logged in show Edit AND Delete -->
                         <% if(displayName) { %>
-                        <th></th>
-                        <th></th>
+                            <th></th>
+                            <th></th>
+                        <!-- else (NOT logged in) show Edit only-->
+                        <% } else { %>
+                            <th></th>  
                         <% } %>
+                        
+                        
                     </tr>
                 </thead>
                 <tbody id="surveyList">
@@ -28,18 +37,98 @@
                             <td><%= surveys[count].number %></td>
                             <td><%= surveys[count].email %></td>
 
+                            <!-- if logged in show Edit AND Delete -->
                             <% if(displayName) { %>
                             
                             <td class="text-center col-1">
                                 <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-success btn-sm">Edit</a>
                             </td>
-                            
+
                             <td class="text-center col-1">
                                 <a href="/survey-delete/<%= surveys[count]._id %>"
                                     class="btn btn-danger btn-sm">Delete</a>
                             </td>
 
+                            <!-- else (NOT logged in) show Edit only-->
+                            <% } else { %>
+
+                                <td class="text-center col-1">
+                                    <a href="/survey-edit/<%= surveys[count]._id %>"
+                                        class="btn btn-success btn-sm">Edit</a>
+                                </td>
+                            
+                            <% } %> 
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <br><br><hr>
+
+
+    <h1 class="title highlight">Survey Two</h1>
+    <% if(displayName) { %>
+    <a href="/survey-add" class="btn btn-dark" role="button">
+        <i class="fas fa-plus-circle "></i> Add a Survey</a>
+    <% } %>
+
+    <a href="/survey-add" class="btn btn-dark" role="button">
+    <i class="fas fa-plus-circle "></i> Add a Question</a>
+
+    <div class="row">
+        <div class="col">
+    
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Survey</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Creator</th>
+                        <!-- if logged in show Edit AND Delete -->
+                        <% if(displayName) { %>
+                            <th></th>
+                            <th></th>
+                        <!-- else (NOT logged in) show Edit only-->
+                        <% } else { %>
+                            <th></th>  
+                        <% } %>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody id="surveyList">
+                    <!-- Repeatable Rows -->
+                    <% for(let count = 0; count < surveys.length; count++) { %>
+                        <tr>
+                            <td><%= surveys[count].name %></td>
+                            <td><%= surveys[count].number %></td>
+                            <td><%= surveys[count].email %></td>
+
+                            <!-- if logged in show Edit AND Delete -->
+                            <% if(displayName) { %>
+                            
+                            <td class="text-center col-1">
+                                <a href="/survey-edit/<%= surveys[count]._id %>"
+                                    class="btn btn-success btn-sm">Edit</a>
+                            </td>
+
+                            <td class="text-center col-1">
+                                <a href="/survey-delete/<%= surveys[count]._id %>"
+                                    class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+
+                            <!-- else (NOT logged in) show Edit only-->
+                            <% } else { %>
+
+                                <td class="text-center col-1">
+                                    <a href="/survey-edit/<%= surveys[count]._id %>"
+                                        class="btn btn-success btn-sm">Edit</a>
+                                </td>
+                            
                             <% } %> 
                         </tr>
                     <% } %>
