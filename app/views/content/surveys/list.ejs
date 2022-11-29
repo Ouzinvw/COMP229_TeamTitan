@@ -17,16 +17,10 @@
                         <th scope="col">Survey</th>
                         <th scope="col">Description</th>
                         <th scope="col">Creator</th>
-                        <!-- if logged in show Edit AND Delete -->
                         <% if(displayName) { %>
-                            <th></th>
-                            <th></th>
-                        <!-- else (NOT logged in) show Edit only-->
-                        <% } else { %>
-                            <th></th>  
+                        <th></th>
+                        <th></th>
                         <% } %>
-                        
-                        
                     </tr>
                 </thead>
                 <tbody id="surveyList">
@@ -37,27 +31,18 @@
                             <td><%= surveys[count].number %></td>
                             <td><%= surveys[count].email %></td>
 
-                            <!-- if logged in show Edit AND Delete -->
                             <% if(displayName) { %>
                             
                             <td class="text-center col-1">
                                 <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-success btn-sm">Edit</a>
                             </td>
-
+                            
                             <td class="text-center col-1">
                                 <a href="/survey-delete/<%= surveys[count]._id %>"
                                     class="btn btn-danger btn-sm">Delete</a>
                             </td>
 
-                            <!-- else (NOT logged in) show Edit only-->
-                            <% } else { %>
-
-                                <td class="text-center col-1">
-                                    <a href="/survey-edit/<%= surveys[count]._id %>"
-                                        class="btn btn-success btn-sm">Edit</a>
-                                </td>
-                            
                             <% } %> 
                         </tr>
                     <% } %>
@@ -88,16 +73,10 @@
                         <th scope="col">Survey</th>
                         <th scope="col">Description</th>
                         <th scope="col">Creator</th>
-                        <!-- if logged in show Edit AND Delete -->
                         <% if(displayName) { %>
-                            <th></th>
-                            <th></th>
-                        <!-- else (NOT logged in) show Edit only-->
-                        <% } else { %>
-                            <th></th>  
+                        <th></th>
+                        <th></th>
                         <% } %>
-                        
-                        
                     </tr>
                 </thead>
                 <tbody id="surveyList">
@@ -108,27 +87,18 @@
                             <td><%= surveys[count].number %></td>
                             <td><%= surveys[count].email %></td>
 
-                            <!-- if logged in show Edit AND Delete -->
                             <% if(displayName) { %>
                             
                             <td class="text-center col-1">
                                 <a href="/survey-edit/<%= surveys[count]._id %>"
                                     class="btn btn-success btn-sm">Edit</a>
                             </td>
-
+                            
                             <td class="text-center col-1">
                                 <a href="/survey-delete/<%= surveys[count]._id %>"
                                     class="btn btn-danger btn-sm">Delete</a>
                             </td>
 
-                            <!-- else (NOT logged in) show Edit only-->
-                            <% } else { %>
-
-                                <td class="text-center col-1">
-                                    <a href="/survey-edit/<%= surveys[count]._id %>"
-                                        class="btn btn-success btn-sm">Edit</a>
-                                </td>
-                            
                             <% } %> 
                         </tr>
                     <% } %>
