@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6 col-sm-12">
+          <div class="login" id="contentArea">
+              <h1 class="highlight title"><%= title %></h1>
+
+            <!-- Error Message Area -->
+            <% if(messages.length > 0) { %>
+              <div id="messageArea" class="alert alert-danger text-center">
+                <%= messages %>
+              </div>
+              <% } %>
+
+              <form method="POST" id="registerForm" novalidate><br>
+                <input type="hidden" name="id" value="<%= user._id %>">
+                <p class="hint-text text-center">Give yourself complete access to top-teir survey templates accessible at any time for all your practical needs.</p>
+
+                <div class="form-group p-4">
+                      <input class="form-control" type="text" name="firstName" id="firstName" placeholder="First Name" required
+                      value="<%= user.firstName %>">
+                      <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" required
+                      value="<%= user.lastName %>">
+                      <input type="email" class="form-control" id="emailAddress" name="emailAddress" required
+                      value="<%= user.emailAddress %>" placeholder="Email">
+                </div>
+                <div class="form-group p-4">
+                      <input type="text" class="form-control" id="username" name="username"  required
+                      value="<%= user.username %>" placeholder="Username">
+                      <input type="password" class="form-control" id="password" name="password"  required
+                      value="<%= user.password %>" placeholder="Password">
+                      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  required
+                      value="<%= user.confirmPassword %>" placeholder="Confirm Password">
+                </div>
+                                                    
+                <div class="text-center">
+                  <button id="submitButton" type="submit" class="btn btn-dark btn-md">
+                    <i class="fas fa-user-plus"></i> Register</button>
+                </div>
+              </form>
+            
+          </div>
+          <p class="text-center text-muted small">
+            Already have an account? 
+            <a class="link" href="/login">Sign in</a>
+          </p>
+    </div>
+  </div>
+</div>

@@ -31,6 +31,7 @@ import indexRouter from "./routes/index.route.server.js";
 import authRouter from "./routes/auth.route.server.js";
 import surveyRouter from "./routes/surveys.route.server.js";
 import templatesRouter from "./routes/templates.route.server.js";
+import usersRouter from "./routes/users.route.server.js";
 
 // instantiate app-server
 const app = express();
@@ -81,5 +82,6 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", surveyRouter);
 app.use("/", templatesRouter);
+app.use("/", usersRouter);
 
 export default app;

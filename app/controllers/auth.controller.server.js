@@ -20,7 +20,7 @@ export function DisplayLoginPage(req, res, next){
 
 export function DisplayRegisterPage(req, res, next){
     if(!req.user){
-        return res.render('index', {title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)});
+        return res.render('index', {title: 'Account Registration', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)});
     }
 
     return res.redirect('/survey-list');
