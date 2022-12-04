@@ -3,9 +3,11 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const SurveySchema = new Schema({
+    // values should be changed
     name: String, 
     number: String, 
     email: String,
+    lifetime: Date // might get removed
 }, {
     timestamps: true,
     collection: 'surveys'

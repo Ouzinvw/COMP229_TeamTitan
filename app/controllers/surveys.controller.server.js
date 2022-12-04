@@ -22,6 +22,7 @@ export function ProcessSurveyAddPage(req, res, next){
         name: req.body.name,
         number: req.body.number,
         email: req.body.email,
+        lifetime: req.body.lifetime // might get removed
     });
 
     surveyModel.create(newSurvey, (err, Survey) => {
@@ -56,6 +57,7 @@ export function ProcessSurveyEditPage(req, res, next){
         name: req.body.name,
         number: req.body.number,
         email: req.body.email,
+        lifetime: req.body.lifetime // might get removed
     });
 
     surveyModel.updateOne({_id: id }, newSurvey, (err, Survey) => {
@@ -79,4 +81,39 @@ export function ProcessSurveyDelete(req, res, next){
 
         res.redirect('/survey-list');
     })
+}
+
+
+
+export function ProcessSurveyLifetime(req, res, next) {
+    let id = req.params.id;
+    // let activationDate = new Date(req.activationDate).toISOString();
+     let expirationDate = new Date(req.expirationDate).toISOString();
+    
+    // surveyModel.jwt.sign({_id: id, lifetime: activationDate}, (err) = {
+    //     if (err) {
+    //         console.error(err);
+    //         res.end(err);
+    //     }
+    // });
+
+    surveyModel.findById(id, (err, survey) => {
+        if(err){
+            console.error(err);
+            res.end(err);
+        }
+
+        if ((Date.now() - survey.Date) > expirationDate) {
+            survey.remove();
+        }
+
+    });  
+    
+    
+    // surveyModel.remove({_id: id, lifetime: expirationDate}, (err) = {
+    //     if (err) {
+    //         console.error(err);
+    //         res.end(err);
+    //     }
+    // });
 }

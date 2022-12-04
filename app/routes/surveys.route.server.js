@@ -5,7 +5,8 @@ import {  DisplaySurveyList,
     ProcessSurveyAddPage, 
     ProcessSurveyEditPage, 
     DisplaySurveyEditPage, 
-    ProcessSurveyDelete } from "../controllers/surveys.controller.server.js";
+    ProcessSurveyDelete, 
+    ProcessSurveyLifetime} from "../controllers/surveys.controller.server.js";
 
 import { AuthGuard } from "../utils/index.js";
 
@@ -18,5 +19,6 @@ router.post('/survey-edit/:id',
 AuthGuard,ProcessSurveyEditPage);
 router.get('/survey-edit/:id', AuthGuard,DisplaySurveyEditPage);
 router.get('/survey-delete/:id', AuthGuard,ProcessSurveyDelete);
+router.get('/survey-list/:id', AuthGuard,ProcessSurveyLifetime);
 
 export default router;
