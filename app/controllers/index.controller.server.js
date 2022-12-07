@@ -7,6 +7,7 @@ export function displayHomePage(req, res, next) {
     title: "Home",
     page: "home",
     displayName: UserDisplayName(req),
+    user: req.user
   });
 }
 
@@ -15,5 +16,6 @@ export function DisplaySurveyList(req, res, next) {
     title: "Survey",
     page: "surveys",
     displayName: UserDisplayName(req),
+    user: req.user
   });
 }

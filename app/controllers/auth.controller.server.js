@@ -12,9 +12,10 @@ import { UserDisplayName } from '../utils/index.js';
 // Display Functions
 export function DisplayLoginPage(req, res, next){
     if(!req.user){
+        
         return res.render('index', {title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
     }
-
+    
     return res.redirect('/survey-list');
 }
 
@@ -54,11 +55,13 @@ export function ProcessLoginPage(req, res, next){
 
 export function ProcessRegisterPage(req, res, next){
     let newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
         emailAddress: req.body.emailAddress,
         displayName: req.body.firstName + " " + req.body.lastName
     });
-
+    User.re
     User.register(newUser, req.body.password, function(err){
         if(err){
             if(err.name == "UserExistsError"){

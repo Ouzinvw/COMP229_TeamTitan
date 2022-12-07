@@ -8,7 +8,7 @@ export function DisplaySurveyList(req, res, next){
             res.end(err);
         }
 
-        res.render('index', {title: 'Survey List', page: 'surveys/list', surveys: surveyCollection, displayName: UserDisplayName(req)});
+        res.render('index', {title: 'Survey List', page: 'surveys/list', surveys: surveyCollection, displayName: UserDisplayName(req),user: req.user});
     })
 }
 
