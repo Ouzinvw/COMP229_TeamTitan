@@ -9,7 +9,7 @@ import { AuthGuard } from "../utils/index.js";
 
 const router = Router();
 
-router.get("/template1", DisplayTemplate1Page);
-router.get("/template2", DisplayTemplate2Page);
+router.get("/template1", AuthGuard, DisplayTemplate1Page);
+router.get("/template2", AuthGuard, DisplayTemplate2Page);
 
 export default router;
