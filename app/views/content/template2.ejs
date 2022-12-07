@@ -1,48 +1,55 @@
 <div class="container">
-  <h1 class="title highlight">Short answer survey creator</h1><hr><br>
+  <h1 class="title highlight">Short answer survey creator</h1><hr>
+  <p class="text-center">Fields labelled with a * are required before posting your survey. After filling out the required information you can add as many questions as you with before publishing and posting your survey.</p>
+  <p class="text-center">Keep in mind, all responding answers will be in <span class="highlight">short answer format</span>.</p>
+
+  <!-- Add question -->
   <a href="" class="btn btn-dark" role="button">
     <i class="fas fa-plus-circle "></i> Add question row</a>
+
   <div class="row">
     <div class="col">
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
-                  <th class="text-center">Write your questions here</th>
-                  <th class="text-center">Answers will go here</th>
-                </tr>
-            </thead>
-            <tbody id="surveyList">
-                <!-- Repeatable Rows -->
-                <tr>
-                  <td class="text-center">
-                    <textarea name="" id="" cols="60" rows="3"></textarea>
-                  </td>
-                  <td class="text-center">
-                    <textarea name="" id="" cols="60" rows="3"></textarea>
-                  </td>
-                </tr>
-            </tbody>
-        </table>
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+              <th class="col-2"></th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody id="surveyList">
+            <tr>
+              <td>Survey Name*</td>
+              <td><input type="text" id="surveyName" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Survey Description*</td>
+              <td ><input type="text" id="surveyDescription" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Survey Expiration Date*</td>
+              <td><input type="date" class="form-control" id="expirationDate" name="expirationDate"></td>
+            </tr>
+
+            <!-- Question Rows, add question functionality required -->
+
+            <tr>
+              <td>Question [i]</td>
+              <td><input name="" id="" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Question [i]</td>
+              <td><input name="" id="" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Question [i]</td>
+              <td><input name="" id="" class="form-control"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-dark"><i class="fa-solid fa-share-from-square"></i> Launch Survey</a>
+
     </div>
   </div>
-
-
-  <!-- Form for setting the lifetime for the survey -->
-  <br>
-  <h3>Add a Lifetime For Your Survey</h3>
-  <form action="POST" id="lifetimeForm">
-    <div class="form-group p-4">
-      
-      <label for="activationDate">Activation Date</label>
-      <input type="date" class="form-control" id="activationDate" name="activationDate">
-      <br>
-      <label for="expirationDate">Expiration Date</label>
-      <input type="date" class="form-control" id="expirationDate" name="expirationDate">
-
-    </div>
-  </form>
-
-
-
 </div>

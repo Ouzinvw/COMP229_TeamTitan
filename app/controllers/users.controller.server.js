@@ -19,7 +19,7 @@ export function DisplayProfileEditPage(req, res, next) {
     res.render("index", {
       title: "Edit Your Profile",
       page: "users/edit",
-      user: user,
+      user: req.user,
       displayName: UserDisplayName(req),
     });
   });
