@@ -20,7 +20,7 @@
                         <th scope="col">Survey</th>
                         <th scope="col">Description</th>
                         <th scope="col">Creator</th>
-                        <th scope="col">Lifetime</th>
+                        <th scope="col">Expiration</th>
                         <!-- Add an extra <th></th> here after time left to respond is added -->
                         <th scope="col"></th>
                     </tr>
@@ -33,7 +33,9 @@
                             <td><%= surveys[count].number %></td>
                             <td><%= surveys[count].email %></td>
                             <!-- Add a time left to respond attribute -->
-                            <td><%= surveys[count].lifetime %></td>
+                            <td><%= surveys[count].expiration %></td>
+                            
+                            
 
                             <!-- Removed logged in requirement to respond since anyone should be able to respond -->
                             <td class="text-center col-1">

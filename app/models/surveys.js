@@ -1,16 +1,19 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const SurveySchema = new Schema({
+const SurveySchema = new Schema(
+  {
     // values should be changed
-    name: String, 
-    number: String, 
+    name: String,
+    number: String,
     email: String,
-    lifetime: Date // might get removed
-}, {
+    expiration: Date,
+  },
+  {
     timestamps: true,
-    collection: 'surveys'
-});
+    collection: "surveys",
+  }
+);
 
-export default mongoose.model('Surveys', SurveySchema);
+export default mongoose.model("Surveys", SurveySchema);
