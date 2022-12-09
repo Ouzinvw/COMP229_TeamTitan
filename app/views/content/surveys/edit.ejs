@@ -12,7 +12,7 @@
         </thead>
         <tbody id="surveyList">
 
-            <% for(let count = 0; count < survey.questions[count]; count++) { %>
+            <% for(let count = 0; count < survey.questions.length; count++) { %>
                 <tr>
                   <td><textarea class="form-control" name="answers" id=""></textarea></td>
                   <td><p><%= survey.questions[count] %></p></td>
