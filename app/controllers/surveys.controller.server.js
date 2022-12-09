@@ -2,11 +2,14 @@ import surveyModel from "../models/surveys.js";
 import { UserDisplayName } from "../utils/index.js";
 
 export function DisplaySurveyList(req, res, next) {
-  surveyModel.find({expiration:{$gte:Date.now()}},function (err, surveyCollection) {
+  surveyModel.find({ expiration: { $gte: Date.now() } }, function (err, surveyCollection) {
     if (err) {
       console.error(err);
       res.end(err);
     }
+
+    console.log("surveyCollection: ", surveyCollection);
+  
 
     res.render("index", {
       title: "Survey List",
@@ -27,13 +30,19 @@ export function DisplaySurveyAddPage(req, res, next) {
   });
 }
 
+
 export function ProcessSurveyAddPage(req, res, next) {
+  const user = req.user;
+  console.log("currently logged in user: ", user);
   let newSurvey = surveyModel({
     name: req.body.name,
-    number: req.body.number,
-    email: req.body.email,
+    description: req.body.description,
+    creator: req.user.displayName,
     expiration: req.body.expiration,
+    questions: req.body.questions,
   });
+
+  
 
   surveyModel.create(newSurvey, (err, Survey) => {
     if (err) {

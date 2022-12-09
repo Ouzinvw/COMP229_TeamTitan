@@ -1,51 +1,53 @@
 <div class="container">
-    <h1 class="title highlight">Public surveys</h1>
-    <hr>
-    <div class="container text-center">
-        <% if(displayName) { %>
-        <a href="/template1" class="btn btn-dark" role="button">
-            Create a multiple choice survey</a>
-        
-        <a href="/template2" class="btn btn-dark" role="button">
-            Create a short answer survey</a>
-        <% } %>
-    </div>
+  <h1 class="title highlight">Public surveys</h1>
+  <hr />
+  <div class="container text-center">
+    <% if(displayName) { %>
+    <a href="/template1" class="btn btn-dark" role="button">
+      Create a multiple choice survey</a
+    >
 
-    <div class="row">
-        <div class="col">
-    
-            <table class="table table-striped table-bordered table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Survey</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Creator</th>
-                        <th scope="col">Expiration</th>
-                        <!-- Add an extra <th></th> here after time left to respond is added -->
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody id="surveyList">
-                    <!-- Repeatable Rows -->
-                    <% for(let count = 0; count < surveys.length; count++) { %>
-                        <tr>
-                            <td><%= surveys[count].name %></td>
-                            <td><%= surveys[count].number %></td>
-                            <td><%= surveys[count].email %></td>
-                            <!-- Add a time left to respond attribute -->
-                            <td><%= surveys[count].expiration %></td>
-                            
-                            
+    <a href="/template2" class="btn btn-dark" role="button">
+      Create a short answer survey</a
+    >
+    <% } %>
+  </div>
 
-                            <!-- Removed logged in requirement to respond since anyone should be able to respond -->
-                            <td class="text-center col-1">
-                                <a href="/survey-edit/<%= surveys[count]._id %>"
-                                    class="btn btn-success btn-sm">Respond</a>
-                            </td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Survey</th>
+            <th scope="col">Description</th>
+            <th scope="col">Creator</th>
+            <th scope="col">Expiration</th>
+            <!-- Add an extra <th></th> here after time left to respond is added -->
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="surveyList">
+          <!-- Repeatable Rows -->
+          <% for(let count = 0; count < surveys.length; count++) { %>
+          <tr>
+            <td><%= surveys[count].name %></td>
+            <td><%= surveys[count].description %></td>
+            <td><%= surveys[count].creator %></td>
+            <!-- Add a time left to respond attribute -->
+            <td><%= surveys[count].expiration %></td>
+
+            <!-- Removed logged in requirement to respond since anyone should be able to respond -->
+            <td class="text-center col-1">
+              <a
+                href="/survey-edit/<%= surveys[count]._id %>"
+                class="btn btn-success btn-sm"
+                >Respond</a
+              >
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>

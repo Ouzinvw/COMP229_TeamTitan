@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const SurveySchema = new Schema(
   {
-    // values should be changed
     name: String,
-    number: String,
-    email: String,
+    description: String,
+    creator: String,
     expiration: Date,
+    questions: [String],
   },
   {
     timestamps: true,

@@ -1,56 +1,129 @@
 <div class="container">
-  <h1 class="title highlight">Multiple choice survey creator</h1><hr>
-  <p class="text-center">Fields labelled with a * are required in order to post your survey. After filling out the required information you can add as many questions as you with before publishing and posting your survey.</p>
-  <p class="text-center">Keep in mind, all responding answers will be in <span class="highlight">multiple choice format</span>, in the respective order of <span class="highlight">Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree</span>.</p>
+  <h1 class="title highlight">Multiple choice survey creator</h1>
+  <hr />
+  <p class="text-center">
+    Fields labelled with a * are required in order to post your survey. After
+    filling out the required information you can add as many questions as you
+    with before publishing and posting your survey.
+  </p>
+  <p class="text-center">
+    Keep in mind, all responding answers will be in
+    <span class="highlight">multiple choice format</span>, in the respective
+    order of
+    <span class="highlight"
+      >Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree</span
+    >.
+  </p>
 
-  <!-- Add question -->
-  <a href="" class="btn btn-dark" role="button">
-    <i class="fas fa-plus-circle "></i> Add question row</a>
+  <a  onclick="addQuestionRow()" class="btn btn-dark" role="button">
+    <i class="fas fa-plus-circle"></i> Add question row</a
+  >
 
   <div class="row">
     <div class="col">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th class="col-2"></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="surveyList">
+          <tr>
+            <td>Survey Name*</td>
+            <td><input name="name" type="text" id="surveyName" class="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Survey Description*</td>
+            <td>
+              <input name="description" type="text" id="surveyDescription" class="form-control" />
+            </td>
+          </tr>
+          <tr>
+            <td>Survey Expiration Date*</td>
+            <td>
+              <input
+                type="date"
+                class="form-control"
+                id="expiration"
+                name="expiration"
+              />
+            </td>
+          </tr>
 
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
-                  <th class="col-2"></th>
-                  <th></th>
-                </tr>
-            </thead>
-            <tbody id="surveyList">
-              <tr>
-                <td>Survey Name*</td>
-                <td><input type="text" id="surveyName" class="form-control"></td>
-              </tr>
-              <tr>
-                <td>Survey Description*</td>
-                <td ><input type="text" id="surveyDescription" class="form-control"></td>
-              </tr>
-              <tr>
-                <td>Survey Expiration Date*</td>
-                <td><input type="date" class="form-control" id="expiration" name="expiration"></td>
-              </tr>
+          <tr>
+            <td>Question [1]</td>
+            <td><input name="questions" id="q1" class="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Question [2]</td>
+            <td><input name="questions" id="q2" class="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Question [3]</td>
+            <td><input name="questions" id="q3" class="form-control" /></td>
+          </tr>
+        </tbody>
+      </table>
 
-              <!-- Question Rows, add question functionality required -->
+      <a onclick="publishSurvey()" class="btn btn-dark btn-publish"
+        ><i class="fa-solid fa-share-from-square"></i><span>Publish Survey<span></a
+      >
 
-              <tr>
-                <td>Question [i]</td>
-                <td><input name="" id="" class="form-control"></td>
-              </tr>
-              <tr>
-                <td>Question [i]</td>
-                <td><input name="" id="" class="form-control"></td>
-              </tr>
-              <tr>
-                <td>Question [i]</td>
-                <td><input name="" id="" class="form-control"></td>
-              </tr>
-
-            </tbody>
-        </table>
-
-        <a class="btn btn-dark"><i class="fa-solid fa-share-from-square"></i> Publish Survey</a>
-
-      </div> 
+      
+    </div>
   </div>
 </div>
+
+
+<script>
+  const surveyList = document.getElementById("surveyList");
+  let currentQuestionNumber = 3;
+
+  function addQuestionRow() {
+    currentQuestionNumber += 1;
+    const newQuestionRow = document.createElement("tr");
+    newQuestionRow.innerHTML = `
+      <td>Question [${currentQuestionNumber}]</td>
+      <td><input name="questions" id="q${currentQuestionNumber}" class="form-control" /></td>
+    `;
+    surveyList.appendChild(newQuestionRow);
+  }
+
+  function publishSurvey() {
+    const publishBtn = document.querySelector(".btn-publish span");
+    publishBtn.innerHTML= "Publishing...";
+
+    const fields = document.querySelectorAll("#surveyList .form-control");
+    const data = {};
+
+    fields.forEach((field) => {
+      if(field.name === "questions"){
+        if(!data[field.name]){
+          data[field.name] = [];
+        }
+        data[field.name].push(field.value);
+        return;
+      }
+      data[field.name] = field.value;
+    });
+    console.log(data);
+
+    fetch("/survey-add", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify(data)
+    }).then(res => {
+      console.log("Request complete! response:", res);
+     
+     location.href="/survey-list"
+    }).catch(err => {
+      console.log("Request failed", err);
+      alert('Error publishing survey ' + err.toString)
+      
+    }).finally(()=>{
+      publishBtn.innerHTML= "Publish Survey";
+    })
+        
+  }
+</script>
