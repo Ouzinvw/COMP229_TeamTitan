@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     displayName: String
 }, {
     timestamps: true,
-    colleciton: 'users'
+    collection: 'users'
 });
 
 UserSchema.plugin(passportLocalMongoose);

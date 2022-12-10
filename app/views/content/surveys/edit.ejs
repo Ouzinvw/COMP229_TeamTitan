@@ -10,7 +10,7 @@
             <th>Survey Question</th>
           </tr>
         </thead>
-        <tbody id="surveyList">
+        <tbody id="questionList">
 
             <% for(let count = 0; count < survey.questions.length; count++) { %>
                 <tr>
@@ -22,10 +22,48 @@
         </tbody>
       </table>
 
-      <a onclick="publishSurvey()" class="btn btn-dark btn-publish"
-        ><i class="fa-solid fa-share-from-square"></i><span>Publish Response<span></a>
+      <a onclick="publishSurvey()" class="btn btn-dark btn-publish">Publish Response</a>
 
       
     </div>
   </div>
 </div>
+
+<script>
+  function publishSurvey() {
+    const publishBtn = document.querySelector(".btn-publish");
+    publishBtn.innerHTML = "Publishing...";
+
+    const fields = document.querySelectorAll("#questionList .form-control");
+    const data = {};
+
+    fields.forEach((field) => {
+      if (field.name === "answers") {
+        if (!data[field.name]) {
+          data[field.name] = [];
+        }
+        data[field.name].push(field.value);
+        return;
+      }
+      data[field.name] = field.value;
+    });
+    console.log(data);
+
+    fetch("/responses-add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        console.log("Request complete! response:", res);
+        location.href="/survey-list"
+      })
+      .catch((err) => {
+        console.log("Request failed", err);
+        alert('Error publishing survey ' + err.toString)
+      })
+      .finally(() => {
+        publishBtn.innerHTML = "Publish Survey";
+      });
+  }
+</script>

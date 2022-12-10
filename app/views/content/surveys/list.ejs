@@ -1,6 +1,7 @@
 <div class="container">
   <h1 class="title highlight">Public surveys</h1>
-  <hr />
+  
+  <p class="text-center">Anyone can respond to any active survey, however, to create a survey you must be <a href="/login" class="highlight">logged in</a>.</p><hr>
   <div class="container text-center">
     <% if(displayName) { %>
     <a href="/template1" class="btn btn-dark" role="button">
@@ -36,12 +37,15 @@
             <!-- Add a time left to respond attribute -->
             <td><%= surveys[count].expiration %></td>
 
+            <!-- This is set to allow only annonymous users to respond to surveys, there is an id conflict (survey id & user id) if an authenticated user tries to respond to a survey. -->
             <td class="text-center col-1">
+              <% if(!displayName) { %>
               <a
                 href="/survey-edit/<%= surveys[count]._id %>"
                 class="btn btn-success btn-sm"
                 >Respond</a
               >
+              <% } %>
             </td>
           </tr>
           <% } %>
