@@ -22,7 +22,7 @@
         </tbody>
       </table>
 
-      <a onclick="publishSurvey()" class="btn btn-dark btn-publish">Publish Response</a>
+      <a onclick="publishResponse()" class="btn btn-dark btn-publish">Publish Response</a>
 
       
     </div>
@@ -30,7 +30,8 @@
 </div>
 
 <script>
-  function publishSurvey() {
+  const questionList = document.getElementById("questionList");
+  function publishResponse() {
     const publishBtn = document.querySelector(".btn-publish");
     publishBtn.innerHTML = "Publishing...";
 

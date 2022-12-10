@@ -3,7 +3,7 @@ import { Router } from "express";
 import {
     DisplayResponseList,
     ProcessResponseAdd
-} from "../controllers/responses.controller.server";
+} from "../controllers/responses.controller.server.js";
 
 
 const router = Router();
