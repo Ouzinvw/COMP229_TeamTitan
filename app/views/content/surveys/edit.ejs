@@ -14,7 +14,7 @@
 
             <% for(let count = 0; count < survey.questions.length; count++) { %>
                 <tr>
-                  <td><textarea class="form-control" name="answers" id=""></textarea></td>
+                  <td><textarea class="form-control" name="responses" id=""></textarea></td>
                   <td><p><%= survey.questions[count] %></p></td>
                 </tr>
                 <% } %>
@@ -39,7 +39,7 @@
     const data = {};
 
     fields.forEach((field) => {
-      if (field.name === "answers") {
+      if (field.name === "responses") {
         if (!data[field.name]) {
           data[field.name] = [];
         }
@@ -61,10 +61,10 @@
       })
       .catch((err) => {
         console.log("Request failed", err);
-        alert('Error publishing survey ' + err.toString)
+        alert('Error publishing response ' + err.toString)
       })
       .finally(() => {
-        publishBtn.innerHTML = "Publish Survey";
+        publishBtn.innerHTML = "Publish Response";
       });
   }
 </script>
