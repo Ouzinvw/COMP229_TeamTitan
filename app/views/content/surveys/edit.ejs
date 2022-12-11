@@ -1,6 +1,6 @@
 <div class="container">
 <h1 class="title">Your response to</h1>
-<h2 class="title"><%= survey.name %></h2><hr>
+<h2 class="title" id="surveyName"><%= survey.name %></h2><hr>
 <div class="row">
     <div class="col">
       <table class="table table-striped table-bordered table-hover">
@@ -31,12 +31,17 @@
 
 <script>
   const questionList = document.getElementById("questionList");
+  const surveyName = document.getElementById("surveyName");
+
   function publishResponse() {
     const publishBtn = document.querySelector(".btn-publish");
     publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#questionList .form-control");
     const data = {};
+
+    data[responseToSurvey] = [];
+    data[responseToSurvey].push(surveyName.innerHTML);
 
     fields.forEach((field) => {
       if (field.name === "responses") {

@@ -13,7 +13,8 @@ export function DisplayResponseList(req, res, next) {
   export function ProcessResponseAdd(req, res, next) {
     let newResponse = responseModel({
       responseDate: Date.now(),
-      responses: req.body.responses
+      responseToSurvey: req.body.responseToSurvey,
+      responses: req.body.responses,
     });
   
     
