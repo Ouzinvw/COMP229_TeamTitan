@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="/"><img src="/content/images/teamTitanLogo.png" class="rounded" alt="tt_logo" width="64" height="64"></a>
 
         <% if(displayName) {%>
-        <p class="highlight">Welcome back, <%= displayName %></p>
+        <p class="highlight">Welcome back, <%= user.firstName %></p>
         <% } %>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

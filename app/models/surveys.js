@@ -8,7 +8,7 @@ const SurveySchema = new Schema(
     description: String,
     creator: String,
     expiration: Date,
-    questions: [String],
+    questions: [String]
   },
   {
     timestamps: true,

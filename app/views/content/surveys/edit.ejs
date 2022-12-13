@@ -1,50 +1,75 @@
 <div class="container">
-    <div class="row">
-        <div class="offset-md-3 col-md-6">
-            <h1 class="title"><%= title %></h1>
+<h1 class="title">Your response to</h1>
+<h2 class="title" id="surveyName"><%= survey.name %></h2><hr>
+<div class="row">
+    <div class="col">
+      <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th class="col-2">Your answer</th>
+            <th>Survey Question</th>
+          </tr>
+        </thead>
+        <tbody id="questionList">
 
-            <form class="form" method="POST">
-                <input type="hidden" name="id" value="<%= survey._id %>" >
-                <div class="form-group">
-                    <label for="nameTextField">Survey name</label>
-                    <input type="text" class="form-control"
-                    id="nameTextField"
-                    placeholder="Enter a name for your survey"
-                    name="name" 
-                    value="<%= survey.name %>"
-                    required>
-                </div>
+            <% for(let count = 0; count < survey.questions.length; count++) { %>
+                <tr>
+                  <td><textarea class="form-control" name="responses" id=""></textarea></td>
+                  <td><p><%= survey.questions[count] %></p></td>
+                </tr>
+                <% } %>
 
-<!-- Bottom 2 items will need updating here, in list, and in survey controller -->
+        </tbody>
+      </table>
 
-                <div class="form-group">
-                    <label for="authorTextField">Survey Description</label>
-                    <input type="text" class="form-control"
-                    id="phoneNumTextField"
-                    placeholder="Write a brief description of your survey"
-                    name="number" 
-                    value="<%= survey.number %>"
-                    required>
-                </div>
+      <a onclick="publishResponse()" class="btn btn-dark btn-publish">Publish Response</a>
 
-                <div class="form-group">
-                    <label for="publishedTextField">Your email</label>
-                    <input type="text" class="form-control"
-                    id="emailTextField"
-                    placeholder="Enter your email address"
-                    name="email" 
-                    value="<%= survey.email %>"
-                    required>
-                </div>
-                <br>
-                <button class="btn btn-success" type="submit">
-                    <i class="fas fa-edit"></i> Submit</button>
-                
-                    <a href="/survey-list" class="btn btn-danger">
-                        <i class="fas fa-undo"></i> Cancel</a>
-
-            </form>
-        </div>
-
+      
     </div>
+  </div>
 </div>
+
+<script>
+  const questionList = document.getElementById("questionList");
+  const surveyName = document.getElementById("surveyName");
+
+  function publishResponse() {
+    const publishBtn = document.querySelector(".btn-publish");
+    publishBtn.innerHTML = "Publishing...";
+
+    const fields = document.querySelectorAll("#questionList .form-control");
+    const data = {};
+
+    data[responseToSurvey] = [];
+    data[responseToSurvey].push(surveyName.innerHTML);
+
+    fields.forEach((field) => {
+      if (field.name === "responses") {
+        if (!data[field.name]) {
+          data[field.name] = [];
+        }
+        data[field.name].push(field.value);
+        return;
+      }
+      data[field.name] = field.value;
+    });
+    console.log(data);
+
+    fetch("/responses-add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        console.log("Request complete! response:", res);
+        location.href="/survey-list"
+      })
+      .catch((err) => {
+        console.log("Request failed", err);
+        alert('Error publishing response ' + err.toString)
+      })
+      .finally(() => {
+        publishBtn.innerHTML = "Publish Response";
+      });
+  }
+</script>
