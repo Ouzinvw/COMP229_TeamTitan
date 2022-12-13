@@ -40,9 +40,6 @@
     const fields = document.querySelectorAll("#questionList .form-control");
     const data = {};
 
-    data[responseToSurvey] = [];
-    data[responseToSurvey].push(surveyName.innerHTML);
-
     fields.forEach((field) => {
       if (field.name === "responses") {
         if (!data[field.name]) {
