@@ -24,7 +24,7 @@ export function DisplaySurveyList(req, res, next) {
 export function DisplaySurveyAddPage(req, res, next) {
   res.render("index", {
     title: "Add Survey",
-    page: "surveys/edit",
+    page: "surveys/respond",
     survey: {},
     displayName: UserDisplayName(req),
   });
@@ -54,7 +54,7 @@ export function ProcessSurveyAddPage(req, res, next) {
   });
 }
 
-export function DisplaySurveyEditPage(req, res, next) {
+export function DisplaySurveyResponsePage(req, res, next) {
   let id = req.params.id;
 
   surveyModel.findById(id, (err, survey) => {
@@ -64,15 +64,15 @@ export function DisplaySurveyEditPage(req, res, next) {
     }
 
     res.render("index", {
-      title: "Edit Survey",
-      page: "surveys/edit",
+      title: "Respond to Survey",
+      page: "surveys/respond",
       survey: survey,
       displayName: UserDisplayName(req),
     });
   });
 }
 
-export function ProcessSurveyEditPage(req, res, next) {
+export function ProcessSurveyResponsePage(req, res, next) {
   let id = req.params.id;
 
   let newSurvey = surveyModel({
