@@ -11,7 +11,8 @@
     <span class="highlight">short answer format</span>.
   </p>
 
-  <a onclick="addQuestionRow()" class="btn btn-dark" role="button">Add question row</a
+  <a onclick="addQuestionRow()" class="btn btn-dark" role="button"
+    >Add question row</a
   >
 
   <div class="row">
@@ -26,12 +27,24 @@
         <tbody id="surveyList">
           <tr>
             <td>Survey Name*</td>
-            <td><input name="name" type="text" id="surveyName" class="form-control" /></td>
+            <td>
+              <input
+                name="name"
+                type="text"
+                id="surveyName"
+                class="form-control"
+              />
+            </td>
           </tr>
           <tr>
             <td>Survey Description*</td>
             <td>
-              <input name="description" type="text" id="surveyDescription" class="form-control" />
+              <input
+                name="description"
+                type="text"
+                id="surveyDescription"
+                class="form-control"
+              />
             </td>
           </tr>
           <tr>
@@ -61,7 +74,9 @@
         </tbody>
       </table>
 
-      <a onclick="publishSurvey()" class="btn btn-dark btn-publish">Publish Survey</a>
+      <a onclick="publishSurvey()" class="btn btn-dark btn-publish"
+        >Publish Survey</a
+      >
     </div>
   </div>
 </div>
@@ -81,7 +96,7 @@
   }
 
   function publishSurvey() {
-    const publishBtn = document.querySelector(".btn-publish span");
+    const publishBtn = document.querySelector(".btn-publish");
     publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#surveyList .form-control");
@@ -106,11 +121,11 @@
     })
       .then((res) => {
         console.log("Request complete! response:", res);
-        location.href="/survey-list"
+        location.href = "/survey-list";
       })
       .catch((err) => {
         console.log("Request failed", err);
-        alert('Error publishing survey ' + err.toString)
+        alert("Error publishing survey " + err.toString);
       })
       .finally(() => {
         publishBtn.innerHTML = "Publish Survey";

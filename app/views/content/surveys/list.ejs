@@ -1,7 +1,11 @@
 <div class="container">
   <h1 class="title highlight">Public surveys</h1>
-  
-  <p class="text-center">Anyone can respond to any active survey, however, to create a survey you must be <a href="/login" class="highlight">logged in</a>.</p><hr>
+
+  <p class="text-center">
+    Anyone can respond to any active survey, however, to create a survey you
+    must be <a href="/login" class="highlight">logged in</a>.
+  </p>
+  <hr />
   <div class="container text-center">
     <% if(displayName) { %>
     <a href="/template1" class="btn btn-dark" role="button">
@@ -39,7 +43,14 @@
 
             <!-- This is set to allow only annonymous users to respond to surveys, there is an id conflict (survey id & user id) if an authenticated user tries to respond to a survey. -->
             <td class="text-center col-1">
-              <% if(!displayName) { %>
+              <% if(new Date() > surveys[count].expiration) { %>
+              <a
+                href="/responses-list/<%= surveys[count]._id %>"
+                class="btn btn-success btn-sm"
+              >
+                Results</a
+              >
+              <%} else if(!displayName) { %>
               <a
                 href="/survey-respond/<%= surveys[count]._id %>"
                 class="btn btn-success btn-sm"

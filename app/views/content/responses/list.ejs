@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="title highlight">Survey Responses</h1>
+  <div class="row">
+    <div class="col">
+      <!-- Repeatable Rows -->
+      <% for(let count = 0; count < responses.length; count++) { %>
+      <div class="response-row">
+        <p>User: <%= responses[count].user %></p>
+        <% for(let j = 0; j < responses[count].responses.length; j++) { %>
+        <p>Q: <%= questions[j] %></p>
+        <p>A: <%= responses[count].responses[j] %></p>
+      </div>
+      <% } %> <% } %>
+    </div>
+  </div>
+</div>
