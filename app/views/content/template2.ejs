@@ -74,9 +74,7 @@
         </tbody>
       </table>
 
-      <a onclick="publishSurvey()" class="btn btn-dark btn-publish"
-        >Publish Survey</a
-      >
+      <a onclick="publishSurvey()" class="btn btn-dark btn-publish"><i class="fa-solid fa-share-from-square"></i><span>Publish Survey<span></a>
     </div>
   </div>
 </div>
@@ -96,7 +94,7 @@
   }
 
   function publishSurvey() {
-    const publishBtn = document.querySelector(".btn-publish");
+    const publishBtn = document.querySelector(".btn-publish span");
     publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#surveyList .form-control");
