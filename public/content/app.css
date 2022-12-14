@@ -88,3 +88,7 @@ a:hover {
 .dialog-hide {
   display: none;
 }
+
+.response-row {
+  margin-bottom: 2em;
+}

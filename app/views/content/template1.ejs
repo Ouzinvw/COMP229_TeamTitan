@@ -15,7 +15,8 @@
     >.
   </p>
 
-  <a  onclick="addQuestionRow()" class="btn btn-dark" role="button">Add question row</a
+  <a onclick="addQuestionRow()" class="btn btn-dark" role="button"
+    >Add question row</a
   >
 
   <div class="row">
@@ -30,12 +31,24 @@
         <tbody id="surveyList">
           <tr>
             <td>Survey Name*</td>
-            <td><input name="name" type="text" id="surveyName" class="form-control" /></td>
+            <td>
+              <input
+                name="name"
+                type="text"
+                id="surveyName"
+                class="form-control"
+              />
+            </td>
           </tr>
           <tr>
             <td>Survey Description*</td>
             <td>
-              <input name="description" type="text" id="surveyDescription" class="form-control" />
+              <input
+                name="description"
+                type="text"
+                id="surveyDescription"
+                class="form-control"
+              />
             </td>
           </tr>
           <tr>
@@ -72,7 +85,6 @@
   </div>
 </div>
 
-
 <script>
   const surveyList = document.getElementById("surveyList");
   let currentQuestionNumber = 3;
@@ -89,14 +101,14 @@
 
   function publishSurvey() {
     const publishBtn = document.querySelector(".btn-publish span");
-    publishBtn.innerHTML= "Publishing...";
+    publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#surveyList .form-control");
     const data = {};
 
     fields.forEach((field) => {
-      if(field.name === "questions"){
-        if(!data[field.name]){
+      if (field.name === "questions") {
+        if (!data[field.name]) {
           data[field.name] = [];
         }
         data[field.name].push(field.value);
@@ -108,19 +120,20 @@
 
     fetch("/survey-add", {
       method: "POST",
-      headers: {'Content-Type': 'application/json'}, 
-      body: JSON.stringify(data)
-    }).then(res => {
-      console.log("Request complete! response:", res);
-     
-     location.href="/survey-list"
-    }).catch(err => {
-      console.log("Request failed", err);
-      alert('Error publishing survey ' + err.toString)
-      
-    }).finally(()=>{
-      publishBtn.innerHTML= "Publish Survey";
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     })
-        
+      .then((res) => {
+        console.log("Request complete! response:", res);
+
+        location.href = "/survey-list";
+      })
+      .catch((err) => {
+        console.log("Request failed", err);
+        alert("Error publishing survey " + err.toString);
+      })
+      .finally(() => {
+        publishBtn.innerHTML = "Publish Survey";
+      });
   }
 </script>

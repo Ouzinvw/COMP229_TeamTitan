@@ -1,7 +1,8 @@
 <div class="container">
-<h1 class="highlight title">Your response to</h1>
-<h2 class="highlight title" id="surveyName"><%= survey.name %></h2><hr>
-<div class="row">
+  <h1 class="title">Your response to</h1>
+  <h2 class="title" id="surveyName"><%= survey.name %></h2>
+  <hr />
+  <div class="row">
     <div class="col">
       <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark">
@@ -11,20 +12,21 @@
           </tr>
         </thead>
         <tbody id="questionList">
-
-            <% for(let count = 0; count < survey.questions.length; count++) { %>
-                <tr>
-                  <td><textarea class="form-control" name="responses" id=""></textarea></td>
-                  <td><p><%= survey.questions[count] %></p></td>
-                </tr>
-                <% } %>
-
+          <% for(let count = 0; count < survey.questions.length; count++) { %>
+          <tr>
+            <td>
+              <textarea class="form-control" name="responses" id=""></textarea>
+            </td>
+            <td><p><%= survey.questions[count] %></p></td>
+          </tr>
+          <% } %>
+          <input hidden value="<%= survey.id%>" id="surveyID"></textarea>
         </tbody>
       </table>
 
-      <a onclick="publishResponse()" class="btn btn-dark btn-publish">Publish Response</a>
-
-      
+      <a onclick="publishResponse()" class="btn btn-dark btn-publish"
+        >Publish Response</a
+      >
     </div>
   </div>
 </div>
@@ -37,7 +39,9 @@
     publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#questionList .form-control");
-    const data = {};
+    const data = {
+      survey: document.getElementById("surveyID").value,
+    };
 
     fields.forEach((field) => {
       if (field.name === "responses") {
@@ -58,11 +62,11 @@
     })
       .then((res) => {
         console.log("Request complete! response:", res);
-        location.href="/survey-list"
+        location.href = "/survey-list";
       })
       .catch((err) => {
         console.log("Request failed", err);
-        alert('Error publishing response ' + err.toString)
+        alert("Error publishing response " + err.toString);
       })
       .finally(() => {
         publishBtn.innerHTML = "Publish Response";

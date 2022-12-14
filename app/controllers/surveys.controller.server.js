@@ -2,7 +2,7 @@ import surveyModel from "../models/surveys.js";
 import { UserDisplayName } from "../utils/index.js";
 
 export function DisplaySurveyList(req, res, next) {
-  surveyModel.find({ expiration: { $gte: Date.now() } }, function (err, surveyCollection) {
+  surveyModel.find({  }, function (err, surveyCollection) {
     if (err) {
       console.error(err);
       res.end(err);
