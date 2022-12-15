@@ -16,15 +16,13 @@ export function DisplayResponseList(req, res, next) {
         console.error("couldn't fetch survey responses", err);
       }
 
-      // responseCollection = responseCollection.map(
-      //   (response) => response.responses
-      // )[0];
       console.log("response Collelction", responseCollection);
       console.log("questions ", survey.questions);
 
       res.render("index", {
         title: "Survey responses",
         page: "responses/list",
+        survey: survey,
         questions: survey.questions,
         responses: responseCollection,
         displayName: UserDisplayName(req),
@@ -36,8 +34,8 @@ export function DisplayResponseList(req, res, next) {
 
 export function ProcessResponseAdd(req, res, next) {
   let newResponse = responseModel({
-    survey: req.survey,
-    user: req.user.displayName,
+    survey: req.body.survey,
+    user: req.user ? req.user.displayName : "anonymous user",
     responseDate: Date.now(),
     responses: req.body.responses,
   });

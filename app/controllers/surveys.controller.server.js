@@ -27,6 +27,7 @@ export function DisplaySurveyAddPage(req, res, next) {
     page: "surveys/respond",
     survey: {},
     displayName: UserDisplayName(req),
+    user: req.user,
   });
 }
 
@@ -68,6 +69,7 @@ export function DisplaySurveyResponsePage(req, res, next) {
       page: "surveys/respond",
       survey: survey,
       displayName: UserDisplayName(req),
+      user: req.user,
     });
   });
 }

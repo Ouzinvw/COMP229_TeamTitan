@@ -1,40 +1,70 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="/content/images/teamTitanLogo.png" class="rounded" alt="tt_logo" width="64" height="64"></a>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"
+      ><img
+        src="/content/images/teamTitanLogo.png"
+        class="rounded"
+        alt="tt_logo"
+        width="64"
+        height="64"
+    /></a>
 
-        <% if(displayName) {%>
-        <p class="highlight">Welcome back, <%= user.firstName %></p>
+    <% if(displayName) {%>
+    <p class="highlight">Welcome back, <%= user.firstName %></p>
+    <% } %>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link <%= (page == 'survey-list') ? 'active' : ''; %>"
+            aria-current="page"
+            href="/survey-list"
+            ><i class="fa-solid fa-list fa-lg"></i> Surveys</a
+          >
+        </li>
+
+        <% if(displayName) { %>
+
+        <li class="nav-item">
+          <a
+            class="nav-link <%= (page == 'user-edit') ? 'active' : ''; %>"
+            aria-current="page"
+            href="/user-edit/<%= user._id %>"
+            ><i class="fa-solid fa-user"></i> Profile</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/logout"
+            ><i class="fa-solid fa-right-from-bracket fa-lg"></i> Logout</a
+          >
+        </li>
+
+        <% } else { %>
+
+        <li class="nav-item">
+          <a
+            class="nav-link <%= (page == 'login') ? 'active' : ''; %>"
+            aria-current="page"
+            href="/login"
+            ><i class="fa-solid fa-right-to-bracket fa-lg"></i> Login</a
+          >
+        </li>
+
         <% } %>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link <%= (page == 'survey-list') ? 'active' : ''; %>" aria-current="page" href="/survey-list"><i class="fa-solid fa-list fa-lg"></i> Surveys</a>
-                  </li> 
-
-                <% if(displayName) { %>
-
-                    <li class="nav-item">
-                      <a class="nav-link  <%= (page == 'user-edit') ? 'active' : ''; %>" aria-current="page" href="/user-edit/<%= user._id %>"><i class="fa-solid fa-user"></i> Profile</a>
-                    </li>
-     
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i> Logout</a>
-                    </li>
-            
-                    <% } else { %>
-            
-                    <li class="nav-item">
-                      <a class="nav-link <%= (page == 'login') ? 'active' : ''; %>" aria-current="page" href="/login"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Login</a>
-                    </li>
-            
-                    <% } %>
-            </ul>
-        </div>
+      </ul>
     </div>
+  </div>
 </nav>

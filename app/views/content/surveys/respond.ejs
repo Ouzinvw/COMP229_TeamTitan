@@ -1,8 +1,9 @@
 <div class="container">
-  <h1 class="lead text-center">Response to <span class="highlight title"><%= survey.name %></span>, by <span class="highlight title"><%= survey.creator %></span></h1>
-  <p class="text-center">
-    <%= survey.description %>
-  </p>
+  <h1 class="lead text-center">
+    Response to <span class="highlight title"><%= survey.name %></span>, by
+    <span class="highlight title"><%= survey.creator %></span>
+  </h1>
+  <p class="text-center"><%= survey.description %></p>
   <hr />
   <div class="row">
     <div class="col">
@@ -22,11 +23,14 @@
             <td><p><%= survey.questions[count] %></p></td>
           </tr>
           <% } %>
-          <input hidden value="<%= survey.id%>" id="surveyID"></textarea>
         </tbody>
       </table>
       <div class="text-center">
-        <a onclick="publishResponse()" class="btn btn-dark btn-publish">Publish Response</a>
+        <a
+          onclick="publishResponse('<%= survey.id%>')"
+          class="btn btn-dark btn-publish"
+          >Publish Response</a
+        >
       </div>
     </div>
   </div>
@@ -35,13 +39,13 @@
 <script>
   const questionList = document.getElementById("questionList");
 
-  function publishResponse() {
+  function publishResponse(surveyID) {
     const publishBtn = document.querySelector(".btn-publish");
     publishBtn.innerHTML = "Publishing...";
 
     const fields = document.querySelectorAll("#questionList .form-control");
     const data = {
-      survey: document.getElementById("surveyID").value,
+      survey: surveyID,
     };
 
     fields.forEach((field) => {
@@ -54,7 +58,6 @@
       }
       data[field.name] = field.value;
     });
-    console.log(data);
 
     fetch("/responses-add", {
       method: "POST",

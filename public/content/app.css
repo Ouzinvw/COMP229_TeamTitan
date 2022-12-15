@@ -92,3 +92,7 @@ a:hover {
 .response-row {
   margin-bottom: 2em;
 }
+
+.response-row .user {
+  font-weight: bold;
+}
