@@ -2,6 +2,7 @@
   <h1 class="title highlight">Survey Responses</h1>
   <div class="row">
     <div class="col">
+      <div id="divToExport">
       <!-- Repeatable Rows -->
       <% for(let count = 0; count < responses.length; count++) { %>
       <div class="response-row">
@@ -11,6 +12,31 @@
         <p>A: <%= responses[count].responses[j] %></p>
       </div>
       <% } %> <% } %>
+
+       </div>
+
+      <button type="button" onclick="generatePDF()" class="btn btn-dark btn-md">Export to PDF</button>
     </div>
   </div>
 </div>
+
+
+
+<script>
+  function generatePDF() {
+        
+        // Choose the element id which you want to export.
+        var element = document.getElementById('divToExport');
+        element.style.width = '700px';
+        element.style.height = '900px';
+        var opt = {
+            margin:       0.5,
+            filename:     'Survey Responses.pdf',
+            image:        { type: 'jpeg', quality: 1 },
+            html2canvas:  { scale: 1 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait',precision: '12' }
+          };
+          // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.
+        html2pdf().set(opt).from(element).save();
+      }
+</script>
