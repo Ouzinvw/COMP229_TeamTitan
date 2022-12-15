@@ -1,6 +1,8 @@
 <div class="container">
-  <h1 class="title">Your response to</h1>
-  <h2 class="title" id="surveyName"><%= survey.name %></h2>
+  <h1 class="lead text-center">Response to <span class="highlight title"><%= survey.name %></span>, by <span class="highlight title"><%= survey.creator %></span></h1>
+  <p class="text-center">
+    <%= survey.description %>
+  </p>
   <hr />
   <div class="row">
     <div class="col">
@@ -23,10 +25,9 @@
           <input hidden value="<%= survey.id%>" id="surveyID"></textarea>
         </tbody>
       </table>
-
-      <a onclick="publishResponse()" class="btn btn-dark btn-publish"
-        >Publish Response</a
-      >
+      <div class="text-center">
+        <a onclick="publishResponse()" class="btn btn-dark btn-publish">Publish Response</a>
+      </div>
     </div>
   </div>
 </div>
