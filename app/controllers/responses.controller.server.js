@@ -37,7 +37,7 @@ export function DisplayResponseList(req, res, next) {
 export function ProcessResponseAdd(req, res, next) {
   let newResponse = responseModel({
     survey: req.survey,
-    user: req.user.email,
+    user: req.user.displayName,
     responseDate: Date.now(),
     responses: req.body.responses,
   });
